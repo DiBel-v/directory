@@ -1,17 +1,36 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<v-content>
+  <v-app>
+    <Form />
+    <ContactsList @open="showModal=true"/>
+    <ChangeContact v-if="showModal" @close="closeModal()" />
+  </v-app>
+</v-content>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ContactsList from './components/ContactsList.vue'
+import Form from './components/Form.vue'
+import ChangeContact from './components/ChangeContact.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    ContactsList,
+    Form,
+    ChangeContact
+  },
+  props: {
+    showModal: {
+      type: Boolean,
+      default: false
+    }
+  },
+  methods: {
+    closeModal(){
+      this.showModal = false;
+      this.$router.push({ path: '/contact-list' })
+    }
   }
 }
 </script>
