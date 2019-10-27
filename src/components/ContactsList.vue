@@ -29,6 +29,7 @@ export default {
     return {
     }
   },
+  //Получаем список всех контактов в сторе
   computed: {
   ...mapGetters({
     contactsList: 'getContactsList'

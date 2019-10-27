@@ -34,8 +34,6 @@
 <script>
 import { validationMixin } from "vuelidate";
 import { required, maxLength, email } from "vuelidate/lib/validators";
-//   const mobile = /(\d?)(\d{3})(\d{3})(\d{2})(\d{2})/g;
-//   const substPhone = "+$1 ($2) $3-$4-$5";
 const checkPhone = value => {
   const mobile = /\+7\(\d{3}\)\d{7}$/;
   return mobile.test(value);
@@ -82,8 +80,8 @@ export default {
   },
 
   methods: {
-    
     submit() {
+      //Добавляем созданный контакт в стор, при условии, что все поля заполнены
       this.$v.$touch();
       if( this.name && this.email && this.phone){
       this.$store.commit("addContact", {
@@ -96,6 +94,7 @@ export default {
       });
     }},
     clear() {
+      //Очистить поля
       this.$v.$reset();
       this.name = "";
       this.email = "";
@@ -105,7 +104,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #form {
   margin: 0 auto;

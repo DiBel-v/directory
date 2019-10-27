@@ -73,6 +73,7 @@ export default {
   }),
 
   computed: {
+    //Описание ошибок при некорректном вводе данных
     nameErrors() {
       const errors = [];
       if (!this.$v.name.$dirty) return errors;
@@ -108,6 +109,7 @@ export default {
   },
   methods: {
     submit() {
+      //Обновить существующий контакт в сторе
       this.$store.commit(
         "updateContact",
         {
@@ -120,6 +122,7 @@ export default {
       this.$v.$touch();
       this.$emit('close');
     },
+    //Удалить контакт из стора
     deleteContact() {
       this.$store.commit(
         "removeFromContactsList",
@@ -167,14 +170,7 @@ export default {
 .modal-default-button {
   float: right;
 }
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
+
 .modal-enter {
   opacity: 0;
 }
